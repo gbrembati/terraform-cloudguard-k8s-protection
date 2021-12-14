@@ -21,3 +21,8 @@ variable "cspm-mail" {
     description = "The email you want the CSPM to send reports to"
     type = string  
 }
+variable "cspm-api-endpoint" {
+    description = "Specify the CSPM API endpoint for US use: 'https://api.dome9.com/v2/' for EU use: 'https://api.eu1.dome9.com/v2/'"
+    type = string
+    default = "https://api.dome9.com/v2/"
+}

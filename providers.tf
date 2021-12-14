@@ -35,6 +35,7 @@ provider "azurerm" {
 provider "dome9" {
   dome9_access_id   = var.cspm-key-id
   dome9_secret_key  = var.cspm-key-secret
+  base_url          = var.cspm-api-endpoint
 }
 
 provider "kubernetes" {
