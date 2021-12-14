@@ -19,13 +19,6 @@ resource "azurerm_log_analytics_workspace" "log-workspace" {
   location            = local.log-analytics-location
   resource_group_name = azurerm_resource_group.rg-aks-cluster.name
   sku                 = var.log-analytics-sku
-
-  tags = {
-    owner       = local.tags.owner
-    managed-by  = local.tags.managed-by
-    tf-cloud-workspace  = local.tags.tf-cloud-workspace
-    tf-cloud-workflow   = local.tags.tf-cloud-workflow
-  }
 }
 resource "azurerm_log_analytics_solution" "log-analytics" {
   solution_name         = "ContainerInsights"
