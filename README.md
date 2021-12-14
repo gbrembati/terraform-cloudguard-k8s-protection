@@ -1,6 +1,7 @@
 # CloudGuard Kubernetes Protection
-This Terraform project is intended to create a Kubernetes environment in Azure (AKS) and protects it with Check Point technologies: CSPM, Workload and AppSec.     
+This Terraform project creates a Kubernetes environment in Azure (AKS) and protects it with Check Point technologies.     
 In this case, we use four different Terraform providers: [Azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest), [Kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest), [Helm](https://registry.terraform.io/providers/hashicorp/helm/latest), [CloudGuard](https://registry.terraform.io/providers/dome9/dome9/latest).     
+Once deployed we will have an AKS Cluster with an example application running protected by CloudGuard CSPM, CloudGuard Workload and CloudGuard AppSec.      
 As per my deployments (made in France Central), this project creates all of the following in less than __10 minutes__.    
 
 ## Which are the components created?
