@@ -1,7 +1,6 @@
 # Create a dedicated Org-unit under the root one
 resource "dome9_organizational_unit" "my-org-unit" {
   name      = var.cspm-org-unit
-  depends_on = [google_container_node_pool.gke-node-pool]
 }
 
 resource "dome9_cloudaccount_kubernetes" "cspm-cluster" {
