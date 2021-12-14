@@ -69,7 +69,6 @@ If you want (or need) to further customize other project details, you can change
 Here you will also be able to find the descriptions that explain what each variable is used for.
 
 ## Launch terraform to build the infrastructure
-##
 To prepare the current working directory (and install the required providers) run :
 ```hcl
 terraform init 
@@ -84,6 +83,6 @@ To apply the changes required to reach the desired state (and create your enviro
 ```hcl
 terraform apply
 ```
-## 
+
 ## Create the A record in the Azure DNS zone
 Once the terraform project will be applied correctly, you will have the application running an protected and you will need to create A record in the Azure DNS zone to use to reach the application with the ingress public IP. Please make sure to provide the same name then you did in the Appsec WebApp configuration.
