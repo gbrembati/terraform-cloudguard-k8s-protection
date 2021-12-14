@@ -27,9 +27,16 @@ Then you will need to get the API credentials that you will be using with Terraf
 
 Remember to copy these two values! You will need to enter them in the *.tfvars* file later on.
 
-## Get Appsec token in your Cloudguard Appsec Portal
+## Get Appsec token in your Check Point Infinity Portal
 You will need to use them for the Infinity Portal configuration, in the INFINITY POLICY application.    
 If you don't have a Portal you can create one following this link: [Register](https://portal.checkpoint.com/create-account)
+
+Under the Infinity Policy Tab go to "Getting Started" > "Assets" > "New Asset" > "Web Application"
+Then follow this configuration steps:
+![Appsec WebApp Configuration](/zimages/create-appsec-application.jpg)
+
+On the profile page copy then the token! You will need to enter them in the *.tfvars* file later on.
+![Appsec Token](/zimages/get-appsec-token.jpg)
 
 ## How to use it
 The only thing that you need to do is changing the __*terraform.tfvars*__ file located in this directory.
@@ -60,3 +67,23 @@ appsec-token    = "cp-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 If you want (or need) to further customize other project details, you can change defaults in the different __*name-variables.tf*__ files.
 Here you will also be able to find the descriptions that explain what each variable is used for.
+
+## Launch terraform to build the infrastructure
+##
+To prepare the current working directory (and install the required providers) run :
+```hcl
+terraform init 
+```
+##
+To create an execution plan (and see the changes that will be made in your environment) run :
+```hcl
+terraform plan
+``` 
+##
+To apply the changes required to reach the desired state (and create your environment) run :
+```hcl
+terraform apply
+```
+## 
+## Create the A record in the Azure DNS zone
+Once the terraform project will be applied correctly, you will have the application running an protected and you will need to create A record in the Azure DNS zone to use to reach the application with the ingress public IP. Please make sure to provide the same name then you did in the Appsec WebApp configuration.
