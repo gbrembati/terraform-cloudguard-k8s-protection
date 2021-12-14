@@ -1,6 +1,5 @@
 # CloudGuard Kubernetes Protection
-This Terraform project creates a Kubernetes environment in Azure (AKS) and protects it with Check Point technologies.     
-In this case, we use four different Terraform providers: [Azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest), [Kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest), [Helm](https://registry.terraform.io/providers/hashicorp/helm/latest), [CloudGuard](https://registry.terraform.io/providers/dome9/dome9/latest).     
+This Terraform project creates a Kubernetes environment in Azure (AKS) and protects it with Check Point technologies. In this case, we use four different Terraform providers: [Azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest), [Kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest), [Helm](https://registry.terraform.io/providers/hashicorp/helm/latest), [CloudGuard](https://registry.terraform.io/providers/dome9/dome9/latest).     
 Once deployed we will have an AKS Cluster with an example application running protected by CloudGuard CSPM, CloudGuard Workload and CloudGuard AppSec.      
 As per my deployments (made in France Central), this project creates all of the following in less than __10 minutes__.    
 
@@ -21,12 +20,16 @@ First, you need to have a CloudGuard CSPM account, and if you don't, you can cre
 2. Create an account in [Asia Pacific Region](https://secure.ap1.dome9.com/v2/register/invite)
 3. Create an account in [United States Region](https://secure.dome9.com/v2/register/invite)
 
-## Get API credentials in your CPSM Portal
+## Get API credentials in your CloudGuard CPSM Portal
 Then you will need to get the API credentials that you will be using with Terraform to onboard the accounts.
 
 ![CSPM Service Account](/zimages/create-cpsm-serviceaccount.jpg)
 
 Remember to copy these two values! You will need to enter them in the *.tfvars* file later on.
+
+## Get Appsec token in your Cloudguard Appsec Portal
+You will need to use them for the Infinity Portal configuration, in the INFINITY POLICY application.    
+If you don't have a Portal you can create one following this link: [Register](https://portal.checkpoint.com/create-account)
 
 ## How to use it
 The only thing that you need to do is changing the __*terraform.tfvars*__ file located in this directory.
