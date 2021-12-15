@@ -46,5 +46,9 @@ resource "helm_release" "ckp-appsec" {
     name = "appsec.persistence.storageClass"
     value= "default"
   }
+  set {
+    name = "controller.ingressClassResource.name"
+    value= "nginx"
+  }
   depends_on = [azurerm_kubernetes_cluster.aks-cluster]
 }
