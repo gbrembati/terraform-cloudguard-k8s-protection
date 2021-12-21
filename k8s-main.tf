@@ -53,6 +53,23 @@ resource "kubernetes_service" "app-svc" {
   }
 }
 
+resource "kubernetes_service" "unprotected-app-svc" {
+  metadata {
+    name      = "${var.app-name}-unprotected"
+    namespace = kubernetes_namespace.app-namespace.id
+  }
+  spec {
+    selector = {
+      app = kubernetes_deployment.app-deployment.metadata[0].labels.app
+    }
+    port {
+      port        = 3000
+      target_port = 3000
+    }
+    type = "LoadBalancer"
+  }
+}
+
 resource "kubernetes_ingress_v1" "appsec-ingress" {
   metadata {
     name = "${var.app-name}-ingress"
@@ -84,4 +101,8 @@ resource "kubernetes_ingress_v1" "appsec-ingress" {
 output "juiceshop-protected-fqdn" {
   description = "The FQDN of the JuiceShop app protected by Appsec"
   value = "http://juiceshop-protected.${azurerm_dns_zone.mydns-public-zone.name}"
+}
+output "juiceshop-unprotected-fqdn" {
+  description = "The FQDN of the JuiceShop app exposed direcly"
+  value = "http://juiceshop-unprotected.${azurerm_dns_zone.mydns-public-zone.name}:3000"
 }

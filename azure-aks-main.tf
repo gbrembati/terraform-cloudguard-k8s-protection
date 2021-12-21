@@ -6,6 +6,14 @@ resource "azurerm_dns_zone" "mydns-public-zone" {
   name                = var.mydns-zone
   resource_group_name = azurerm_resource_group.rg-dns-myzone.name
 }
+resource "azurerm_dns_a_record" "juiceshop-dns-record" {
+  name                = kubernetes_service.unprotected-app-svc.metadata.0.name
+  zone_name           = azurerm_dns_zone.mydns-public-zone.name
+  resource_group_name = azurerm_resource_group.rg-dns-myzone.name
+  ttl                 = 300
+  records             = ["${kubernetes_service.unprotected-app-svc.status.0.load_balancer.0.ingress.0.ip}"]
+  depends_on = [kubernetes_service.unprotected-app-svc]
+}
 
 resource "azurerm_resource_group" "rg-aks-cluster" {
   name     = "rg-${var.k8s-cluster-name}"
