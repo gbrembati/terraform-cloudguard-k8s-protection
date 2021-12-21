@@ -63,7 +63,7 @@ resource "kubernetes_service" "unprotected-app-svc" {
       app = kubernetes_deployment.app-deployment.metadata[0].labels.app
     }
     port {
-      port        = 3000
+      port        = 80
       target_port = 3000
     }
     type = "LoadBalancer"
@@ -104,5 +104,5 @@ output "juiceshop-protected-fqdn" {
 }
 output "juiceshop-unprotected-fqdn" {
   description = "The FQDN of the JuiceShop app exposed direcly"
-  value = "http://juiceshop-unprotected.${azurerm_dns_zone.mydns-public-zone.name}:3000"
+  value = "http://juiceshop-unprotected.${azurerm_dns_zone.mydns-public-zone.name}"
 }
