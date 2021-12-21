@@ -52,3 +52,11 @@ resource "helm_release" "ckp-appsec" {
   }
   depends_on = [azurerm_kubernetes_cluster.aks-cluster]
 }
+
+data "kubernetes_service" "ckp-appsec-controller" {
+  metadata {
+    name = "${helm_release.ckp-appsec.name}-cpappsec-ingress-nginx-controller"
+    namespace = helm_release.ckp-appsec.namespace
+  }
+  depends_on = [helm_release.ckp-appsec]
+}

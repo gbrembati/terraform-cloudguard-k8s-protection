@@ -84,5 +84,11 @@ To apply the changes required to reach the desired state (and create your enviro
 terraform apply
 ```
 
-## Create the A record in the Azure DNS zone
-Once the terraform project will be applied correctly, you will have the application running an protected and you will need to create A record in the Azure DNS zone to use to reach the application with the ingress public IP. Please make sure to provide the same name then you did in the Appsec WebApp configuration.
+## FQDN output
+Once the  project will be applied correctly, you will receive two output with the FQDN to connect to the application.     
+The first is the one where the application lives behind appsec, the second one is the directly exposed application.     
+```hcl
+Outputs:
+juiceshop-protected-fqdn = "http://juiceshop-protected.<yourzone>.com"
+juiceshop-unprotected-fqdn = "http://juiceshop-unprotected.<yourzone>.com"
+```

@@ -14,6 +14,14 @@ resource "azurerm_dns_a_record" "juiceshop-dns-record" {
   records             = ["${kubernetes_service.unprotected-app-svc.status.0.load_balancer.0.ingress.0.ip}"]
   depends_on = [kubernetes_service.unprotected-app-svc]
 }
+resource "azurerm_dns_a_record" "juiceshop-appsec-dns-record" {
+  name                = "juiceshop-protected"
+  zone_name           = azurerm_dns_zone.mydns-public-zone.name
+  resource_group_name = azurerm_resource_group.rg-dns-myzone.name
+  ttl                 = 300
+  records             = ["${data.kubernetes_service.ckp-appsec-controller.status.0.load_balancer.0.ingress.0.ip}"]
+  depends_on = [kubernetes_service.app-svc]
+}
 
 resource "azurerm_resource_group" "rg-aks-cluster" {
   name     = "rg-${var.k8s-cluster-name}"
