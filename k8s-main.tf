@@ -57,12 +57,10 @@ resource "kubernetes_ingress_v1" "appsec-ingress" {
   metadata {
     name = "${var.app-name}-ingress"
     namespace = kubernetes_namespace.app-namespace.id
-    annotations = {
-      "kubernetes.io/ingress.class" = "nginx"
-    }
   }
 
   spec {
+    ingress_class_name = "nginx"
     rule {
       host = "juiceshop-protected.${azurerm_dns_zone.mydns-public-zone.name}"
       http {
