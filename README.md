@@ -84,7 +84,7 @@ To apply the changes required to reach the desired state (and create your enviro
 terraform apply
 ```
 
-## FQDN output
+## Terraform Project Outputs
 Once the  project will be applied correctly, you will receive two output with the FQDN to connect to the application.     
 The first is the one where the application lives behind appsec, the second one is the directly exposed application.     
 ```hcl
