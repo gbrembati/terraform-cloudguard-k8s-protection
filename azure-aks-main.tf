@@ -20,7 +20,7 @@ resource "azurerm_dns_a_record" "juiceshop-appsec-dns-record" {
   resource_group_name = azurerm_resource_group.rg-dns-myzone.name
   ttl                 = 300
   records             = ["${data.kubernetes_service.ckp-appsec-controller.status.0.load_balancer.0.ingress.0.ip}"]
-  depends_on = [kubernetes_service.app-svc]
+  depends_on = [helm_release.ckp-appsec,data.kubernetes_service.ckp-appsec-controller]
 }
 
 resource "azurerm_resource_group" "rg-aks-cluster" {
