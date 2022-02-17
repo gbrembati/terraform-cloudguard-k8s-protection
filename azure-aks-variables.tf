@@ -31,6 +31,13 @@ variable "k8s-cluster-name" {
 variable "node-pool-count" {
     default = 3
 }
+variable "location" {
+    type = string
+}
+variable "log-analytics-location" {
+    type = string
+}
+
 variable "log-analytics-sku" {
     default = "PerGB2018"
 }
