@@ -32,7 +32,7 @@ resource "random_id" "log-workspace-suffix" {
 }
 resource "azurerm_log_analytics_workspace" "log-workspace" {
   name                = "log-${var.k8s-cluster-name}-${random_id.log-workspace-suffix.dec}"
-  location            = local.log-analytics-location
+  location            = var.log-analytics-location
   resource_group_name = azurerm_resource_group.rg-aks-cluster.name
   sku                 = var.log-analytics-sku
 }
