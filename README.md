@@ -47,6 +47,7 @@ In order to use this project you would now need of INEXT Cli Tool and Terraform.
 
 In order to configure inext plug in, follow the instruction at [CheckPointSW / terraform-provider-infinity-next](https://github.com/CheckPointSW/terraform-provider-infinity-next) on how to set the credentials and download the tool.
 
+##
 Now you would need to change the __*terraform.tfvars*__ file located in this directory.
 
 ```hcl
@@ -82,11 +83,6 @@ To prepare the current working directory (and install the required providers) ru
 ```hcl
 terraform init 
 ```
-##
-To create an execution plan (and see the changes that will be made in your environment) run :
-```hcl
-terraform plan
-``` 
 ##
 To apply the changes required to reach the desired state (and create your environment) run :
 ```hcl
