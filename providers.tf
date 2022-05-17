@@ -3,23 +3,27 @@ terraform {
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
-      version = ">= 2.88.1"
+      version = "~> 2.88.1"
     }
     dome9 = {
       source = "dome9/dome9"
-      version = ">= 1.21.1"
+      version = "1.25.3"
     }
     kubernetes = {
       source = "hashicorp/kubernetes"
-      version = ">= 2.3.2"
+      version = "~> 2.3.2"
     }
     helm = {
       source = "hashicorp/helm"
-      version = ">= 2.2.0"
+      version = "~> 2.5.1"
     }
     random = {
       source = "hashicorp/random"
-      version = "3.1.0"
+      version = "~> 3.1.0"
+    }
+    inext = {
+      source = "CheckPointSW/infinity-next"
+      version = "~> 1.0.0"
     }
   }
 }
@@ -56,4 +60,10 @@ provider "helm" {
     client_key             = base64decode(azurerm_kubernetes_cluster.aks-cluster.kube_config.0.client_key)
     cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.aks-cluster.kube_config.0.cluster_ca_certificate)
   }
+}
+
+provider "inext" {
+  region = "eu"
+  client_id  = var.appsec-client-id
+  access_key = var.appsec-client-secret
 }

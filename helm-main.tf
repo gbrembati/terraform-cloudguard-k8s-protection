@@ -40,17 +40,21 @@ resource "helm_release" "ckp-appsec" {
 
   set {
     name  = "appsec.agentToken"
-    value = "${var.appsec-token}"
+    value = "${inext_kubernetes_profile.appsec-k8s-profile.authentication_token}"
   }
   set {
     name = "appsec.persistence.storageClass"
     value= "default"
   }
   set {
+    name = "controller.admissionWebhooks.enabled"
+    value= "false"
+  }
+  set {
     name = "controller.ingressClassResource.name"
     value= "nginx"
   }
-  depends_on = [azurerm_kubernetes_cluster.aks-cluster]
+  depends_on = [azurerm_kubernetes_cluster.aks-cluster,inext_kubernetes_profile.appsec-k8s-profile]
 }
 
 data "kubernetes_service" "ckp-appsec-controller" {
