@@ -38,7 +38,6 @@ The configuration will be done in this section:
 ![Appsec API Access](/zimages/create-appsec-service-account.jpg)
 
 Once created you will be prompted with the API Key & Secret! You will need to enter them in the *.tfvars* file later on.
-![Appsec Token](/zimages/get-appsec-token.jpg)
 
 ## How to use it
 In order to use this project you would now need of INEXT Cli Tool and Terraform.
