@@ -40,9 +40,10 @@ The configuration will be done in this section:
 Once created you will be prompted with the API Key & Secret! You will need to enter them in the *.tfvars* file later on.
 
 ## How to use it
-In order to use this project you would now need of INEXT Cli Tool and Terraform.
-
-*"All changes that are made when running terraform apply are done under a session of the configured API key. At Infinity Next, each session must be published to be able to enforce your configured policies on your assets. Think of it as commiting your changes to be able to make a release.*      
+In order to use this project you would now need of infinity next Cli Tool and Terraform.     
+Here is why: 
+*"All changes that are made when running terraform apply are done under a session of the configured API key.*     
+*At Infinity Next, each session must be published to be able to enforce your configured policies on your assets. Think of it as commiting your changes to be able to make a release.*      
 *Due to Terraform's lack of concept of session management/commiting changes at the end of an applied configuration, it's required from the user of this provider to publish and enforce the applied configuration by himself."*
 
 In order to configure inext plug in, follow the instruction at [CheckPointSW / terraform-provider-infinity-next](https://github.com/CheckPointSW/terraform-provider-infinity-next) on how to set the credentials and download the tool.
