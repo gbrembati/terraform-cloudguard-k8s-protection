@@ -30,6 +30,16 @@ resource "kubernetes_deployment" "app-deployment" {
         container {
           image = "bkimminich/juice-shop"
           name  = var.app-name
+          resources {
+            requests = {
+              cpu = "200m"
+              memory = "256Mi"
+            }
+            limits = {
+              cpu = "100m"
+              memory = "160Mi"
+            }
+          }
         }
       }
     }
