@@ -11,7 +11,7 @@ terraform {
     }
     kubernetes = {
       source = "hashicorp/kubernetes"
-      version = "~> 2.3.2"
+      version = "~> 2.11.2"
     }
     helm = {
       source = "hashicorp/helm"
@@ -23,7 +23,7 @@ terraform {
     }
     inext = {
       source = "CheckPointSW/infinity-next"
-      version = "~> 1.0.0"
+      version = "~> 1.1.0"
     }
   }
 }
