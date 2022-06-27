@@ -1,3 +1,4 @@
+
 resource "kubernetes_namespace" "app-namespace" {
   metadata {
     name = "${var.app-name}-ns"
@@ -80,20 +81,19 @@ resource "kubernetes_service" "unprotected-app-svc" {
   }
 }
 
-resource "kubernetes_ingress_v1" "appsec-ingress" {
+resource "kubernetes_ingress_v1" "appsec-ext-ingress" {
+  wait_for_load_balancer = true
   metadata {
     name = "${var.app-name}-ingress"
     namespace = kubernetes_namespace.app-namespace.id
   }
-
   spec {
     ingress_class_name = "nginx"
     rule {
       host = "juiceshop-protected.${azurerm_dns_zone.mydns-public-zone.name}"
       http {
         path {
-          path_type = "Prefix"
-          path = "/"
+          path = "/*"
           backend {
             service {
               name = kubernetes_service.app-svc.metadata.0.name
@@ -106,12 +106,14 @@ resource "kubernetes_ingress_v1" "appsec-ingress" {
       }
     }
   }
+  depends_on = [helm_release.ckp-appsec,kubernetes_service.app-svc]
 }
 
 output "juiceshop-protected-fqdn" {
   description = "The FQDN of the JuiceShop app protected by Appsec"
   value = "http://juiceshop-protected.${azurerm_dns_zone.mydns-public-zone.name}"
 }
+
 output "juiceshop-unprotected-fqdn" {
   description = "The FQDN of the JuiceShop app exposed direcly"
   value = "http://juiceshop-unprotected.${azurerm_dns_zone.mydns-public-zone.name}"
