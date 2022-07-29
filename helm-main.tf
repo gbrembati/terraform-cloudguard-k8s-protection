@@ -55,7 +55,7 @@ resource "helm_release" "ckp-appsec" {
 
 data "kubernetes_service" "ckp-appsec-controller" {
   metadata {
-    name = "${helm_release.ckp-appsec.name}-cpappsec-controller"
+    name = "${helm_release.ckp-appsec.name}-cp-k8s-appsec-nginx-ingress-controller"
     namespace = helm_release.ckp-appsec.namespace
   }
   depends_on = [helm_release.ckp-appsec]
