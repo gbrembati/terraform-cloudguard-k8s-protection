@@ -7,7 +7,7 @@ terraform {
     }
     dome9 = {
       source = "dome9/dome9"
-      version = "1.25.3"
+      version = "~> 1.28.5"
     }
     kubernetes = {
       source = "hashicorp/kubernetes"
@@ -23,7 +23,7 @@ terraform {
     }
     inext = {
       source = "CheckPointSW/infinity-next"
-      version = "~> 1.1.0"
+      version = "~> 1.0.3"
     }
   }
 }

@@ -35,10 +35,20 @@ resource "dome9_continuous_compliance_notification" "cspm-cluster-notification" 
   }
 }
 
-# Create a new Continuous Policy with K8s v1.14 Best Practices
+# Create a new Continuous Policy with Kubernetes NIST.SP.800-190
 resource "dome9_continuous_compliance_policy" "cspm-cluster-policy" {
   target_id    = dome9_cloudaccount_kubernetes.cspm-cluster.id
-  ruleset_id   = -72
+  ruleset_id   = -52
   target_type  = "Kubernetes"
   notification_ids = ["${dome9_continuous_compliance_notification.cspm-cluster-notification.id}"]
+}
+
+# Create a new IA Policy with Container Image Assurance 1.0 with Control on Deployed Images
+resource "dome9_image_assurance_policy" "ia-cluster-policy" {
+  target_id    = dome9_cloudaccount_kubernetes.cspm-cluster.id
+  ruleset_id   = -2002
+  target_type  = "Environment"
+  admission_control_action            = "Detection"
+  admission_control_unscanned_action  = "Detection"
+  notification_ids    = ["${dome9_continuous_compliance_notification.cspm-cluster-notification.id}"]
 }
