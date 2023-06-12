@@ -93,7 +93,8 @@ resource "kubernetes_ingress_v1" "appsec-ext-ingress" {
       host = "juiceshop-protected.${azurerm_dns_zone.mydns-public-zone.name}"
       http {
         path {
-          path = "/*"
+          path_type = "Prefix"
+          path = "/"
           backend {
             service {
               name = kubernetes_service.app-svc.metadata.0.name

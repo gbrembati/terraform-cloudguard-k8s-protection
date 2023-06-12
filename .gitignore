@@ -1,6 +1,7 @@
 # Local .terraform directories
 **/.terraform/*
 
+
 # .tfstate files
 *.tfstate
 *.tfstate.*
@@ -32,3 +33,8 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+terraform.secret.tfvars
+inext_1.0.0_darwin_arm64.zip
+ingress-juice.yaml
+ingress1.yaml
