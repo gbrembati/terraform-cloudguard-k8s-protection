@@ -33,7 +33,7 @@ resource "helm_release" "asset-mgmt" {
 }
 
 resource "helm_release" "ckp-appsec" {
-  name       = "cloudguard-appsec"
+  name       = "appsec"
   chart      = "https://github.com/CheckPointSW/Infinity-Next/raw/main/deployments/cp-k8s-appsec-nginx-ingress-4.1.4.tgz"
   namespace  = "cloudguard-appsec"
   create_namespace = true
@@ -50,6 +50,16 @@ resource "helm_release" "ckp-appsec" {
     name = "controller.ingressClassResource.name"
     value= "nginx"
   }
+  set {
+    name = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path"
+    value = "/healthz"
+  }
+
+  # service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  #   set {
+  #   name = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-internal"
+  #   value = "true"
+  # }
   depends_on = [azurerm_kubernetes_cluster.aks-cluster,inext_kubernetes_profile.appsec-k8s-profile]
 }
 
