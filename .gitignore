@@ -34,7 +34,7 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-terraform.tfvars
+terraform.secret.tfvars
 inext_1.0.0_darwin_arm64.zip
 ingress-juice.yaml
 ingress1.yaml
